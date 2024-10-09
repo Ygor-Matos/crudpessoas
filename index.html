@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="src/styles/style.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <!--botões-->
+    <button onclick="openCreateModal()">Criar Pessoa</button>
+    <button onclick="openSearchModal()" >Procurar uma pessoa</button>
+    <button onclick="openDeleteModal()" >Deletar uma pessoa</button>
+    <button onclick="person = getPerson(prompt('Digite o E-mail da pessoa que deseja editar')),
+    person!==null?openEditModal(person):alert('Esse E-mail não foi cadastrado.')"
+    >Editar uma pessoa</button>
+
+    <!-- Modals-->
+    <!--Modal do cadastro de Pessoa-->
+    <div class="modal-create">
+        <div class="modal">
+          <form>
+            <label for="m-nome">Nome</label>
+            <input id="m-nome" type="text" required />
+    
+            <label for="m-telefone">Telefone</label>
+            <input id="m-telefone" type="number" required />
+    
+            <label for="m-Email">E-mail</label>
+            <input id="m-email" type="text" required />
+            
+            <label for="m-data">Data de Aniversário</label>
+            <input id="m-data" type="text" required />
+            
+            <button id="btnSalvar" onclick=" person = createPerson(),
+            alert(person!==null? 'Pessoa registrada com Sucesso\n'+personFormater(person):
+            'Um usuario com esse e-mail já foi cadastrado.') ">Salvar</button>
+          </form>
+        </div>
+    </div>
+    <!--Modal de pesquisa de pessoa através do E-mail-->
+    <div class="modal-search">
+        <div class="modal">
+          <form>
+            <label for="m-nome">E-mail a ser procurado</label>
+            <input id="email" type="text" required />
+            <button id="btnProcurar" 
+            onclick="person = getPerson(document.getElementById('email').value), alert(person!==null?
+            personFormater(person): 'Não encontrado')"
+            >Procurar</button>
+        </form>
+          </form>
+        </div>
+      </div>
+      <!--Modal para receber o e-mail do usuário que será deletado-->
+      <div class="modal-delete">
+        <div class="modal">
+          <form>
+            <label for="m-nome">Digite o E-mail da pessoa que será deletada</label>
+            <input id="emailDelete" type="text" required />
+            <button id="btnProcurar" 
+            onclick="person = deletePerson(), alert(person!==null? 'Usuario deletado \n'+personFormater(person):'Usuário não encontrado')"
+            >Deletar</button>
+        </form>
+          </form>
+        </div>
+      </div>
+
+      <!--Modal de edição-->
+      <div class="modal-edit">
+        <div class="modal">
+          <form>
+            <label for="m-nome">Nome</label>
+            <input id="edit-nome" type="text" required />
+    
+            <label for="m-telefone">Telefone</label>
+            <input id="edit-telefone" type="number" required />
+    
+            <label for="m-Email">E-mail</label>
+            <input id="edit-email" type="text" required />
+            
+            <label for="m-data">Data de Aniversário</label>
+            <input id="edit-data" type="text" required />
+            
+            <button id="btnSalvar" onclick="alert('Pessoa Atualizada:\n'+personFormater(editPerson()))">Salvar</button>
+            
+          </form>
+        </div>
+      </div>
+
+    
+    <script src = '/src/scripts/index.js'></script>
+</body>
+</html>
